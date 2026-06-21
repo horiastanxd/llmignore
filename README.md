@@ -54,6 +54,12 @@ npm install -g llmignore-cli
 # Cargo
 cargo install llmignore-cli
 
+# Homebrew (macOS / Linux)
+brew install horiastanxd/tap/llmignore
+
+# Scoop (Windows)
+scoop install https://raw.githubusercontent.com/horiastanxd/llmignore/main/scoop/llmignore.json
+
 # curl
 curl -fsSL https://raw.githubusercontent.com/horiastanxd/llmignore/main/install.sh | sh
 ```

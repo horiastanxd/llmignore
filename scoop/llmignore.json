@@ -1,0 +1,21 @@
+{
+  "version": "0.1.1",
+  "description": "Like .gitignore, but tells AI tools what NOT to read.",
+  "homepage": "https://github.com/horiastanxd/llmignore",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/horiastanxd/llmignore/releases/download/v0.1.1/llmignore-x86_64-pc-windows-msvc.zip",
+      "hash": "8440a4f6c9c81dc49adc9a5b9d02d4243503f0efe72336d47ac14edf31be3182",
+      "bin": "llmignore.exe"
+    }
+  },
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/horiastanxd/llmignore/releases/download/v$version/llmignore-x86_64-pc-windows-msvc.zip"
+      }
+    }
+  }
+}
