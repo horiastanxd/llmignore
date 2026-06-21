@@ -3,6 +3,14 @@
 All notable changes to this project are documented here. Format based on
 [Keep a Changelog](https://keepachangelog.com/), versioning per [SemVer](https://semver.org/).
 
+## [0.1.1] - 2026-06-21
+
+### Added
+- `sync` now also targets Continue (`.continueignore`), Cline (`.clineignore`), Roo Code (`.rooignore`), and JetBrains AI Assistant (`.aiignore`) - 9 tools total.
+- `completions <shell>` - shell completion scripts (bash, zsh, fish, powershell, elvish).
+- `man` - render a man page (roff) to stdout.
+- More secret patterns in `scan` and the default ruleset: `terraform.tfstate`/`.tfvars`, `.git-credentials`, `.pgpass`, `kubeconfig`, `auth.json`, `.dockercfg`, `*.jks`, `*.p8`, `*.ovpn`.
+
 ## [0.1.0] - 2026-06-21
 
 Initial release.
@@ -20,4 +28,5 @@ Initial release.
 - Global flags `-C/--dir`, `--no-gitignore`, `--no-defaults`; `--json` on scan/list/stats.
 - Distribution: crates.io (`llmignore-cli`), npm (`npx llmignore-cli`, prebuilt binaries), `curl | sh` installer. Package name is `llmignore-cli`; the command is `llmignore`.
 
+[0.1.1]: https://github.com/horiastanxd/llmignore/releases/tag/v0.1.1
 [0.1.0]: https://github.com/horiastanxd/llmignore/releases/tag/v0.1.0

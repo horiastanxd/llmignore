@@ -1,6 +1,6 @@
 {
   "name": "llmignore-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Like .gitignore, but tells AI tools what NOT to read. Fast native scanner for .llmignore files.",
   "keywords": [
     "ai",

@@ -39,7 +39,7 @@ shipped to a model, all eating your context window. `.llmignore` fixes that.
 
 - **Stop leaking secrets.** `.env`, `*.pem`, `id_rsa`, `.npmrc` — gone from AI context by default.
 - **Stop wasting context (and money).** Skip `node_modules/`, `dist/`, lockfiles, binaries. Smaller, sharper context.
-- **One file, every tool.** Write `.llmignore` once; `sync` mirrors it to `.cursorignore`, `.codeiumignore`, `.aiexclude`, `.geminiignore`, `.aiderignore`.
+- **One file, every tool.** Write `.llmignore` once; `sync` mirrors it to the ignore files 9 AI tools already read - Cursor, Windsurf, Gemini, Aider, Continue, Cline, Roo Code, JetBrains AI Assistant.
 - **Native speed.** Built on ripgrep's engine. Scans tens of thousands of files in milliseconds, single static binary, ~2 MB, zero runtime.
 
 ## Install
@@ -112,7 +112,8 @@ so your existing ignores already apply.
 |---|---|
 | `llmignore init` | Write a `.llmignore` with sensible defaults (`--force` to overwrite). |
 | `llmignore scan` | List secret files currently reachable by AI. **Exits 1** if any — drop into CI. |
-| `llmignore sync` | Generate `.cursorignore`, `.codeiumignore`, `.aiexclude`, `.geminiignore`, `.aiderignore`. |
+| `llmignore sync` | Generate the ignore files AI tools read: `.cursorignore`, `.codeiumignore`, `.aiexclude`, `.geminiignore`, `.aiderignore`, `.continueignore`, `.clineignore`, `.rooignore`, `.aiignore`. |
+| `llmignore completions <shell>` | Print a shell completion script (bash/zsh/fish/...). |
 | `llmignore list` | Print files an AI would read. `--ignored` for the inverse, `--json`, `-0` for `xargs -0`. |
 | `llmignore check <file>` | Will an AI read this file? Exit 0 = yes, 1 = ignored. |
 | `llmignore stats` | Included vs ignored counts and an estimated token total. |
@@ -135,6 +136,10 @@ synced .codeiumignore   Windsurf / Codeium
 synced .aiexclude       Gemini Code Assist
 synced .geminiignore    Gemini CLI
 synced .aiderignore     Aider
+synced .continueignore  Continue
+synced .clineignore     Cline
+synced .rooignore       Roo Code
+synced .aiignore        JetBrains AI Assistant
 ```
 
 Edit `.llmignore`, re-run `llmignore sync`, done. Generated files carry a header so re-syncs

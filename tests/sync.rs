@@ -23,6 +23,31 @@ fn sync_writes_tool_ignore_files() {
 }
 
 #[test]
+fn sync_covers_all_supported_tools() {
+    let dir = tempdir().unwrap();
+    let root = dir.path();
+    fs::write(root.join(".llmignore"), "node_modules/\n").unwrap();
+
+    sync(root, false).unwrap();
+
+    for name in [
+        ".cursorignore",
+        ".codeiumignore",
+        ".aiexclude",
+        ".geminiignore",
+        ".aiderignore",
+        ".continueignore",
+        ".clineignore",
+        ".rooignore",
+        ".aiignore",
+    ] {
+        let body = fs::read_to_string(root.join(name))
+            .unwrap_or_else(|_| panic!("{name} should be generated"));
+        assert!(body.contains("node_modules/"), "{name} missing rules");
+    }
+}
+
+#[test]
 fn sync_errors_without_llmignore() {
     let dir = tempdir().unwrap();
     assert!(sync(dir.path(), false).is_err(), "sync needs a .llmignore");

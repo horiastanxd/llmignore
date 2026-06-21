@@ -88,6 +88,14 @@ enum Command {
         #[arg(long)]
         json: bool,
     },
+    /// Print a shell completion script (bash, zsh, fish, powershell, elvish).
+    Completions {
+        /// Target shell.
+        #[arg(value_enum)]
+        shell: clap_complete::Shell,
+    },
+    /// Print a man page (roff) to stdout.
+    Man,
 }
 
 /// Parse arguments and run. Returns the process exit code.
@@ -123,8 +131,22 @@ fn dispatch(cli: &Cli) -> Result<i32> {
         Some(Command::Scan { json }) => cmd_scan(&root, *json),
         Some(Command::Sync { force }) => cmd_sync(&root, *force),
         Some(Command::Stats { json }) => cmd_stats(&root, &opts, *json),
+        Some(Command::Completions { shell }) => cmd_completions(*shell),
+        Some(Command::Man) => cmd_man(),
         None => cmd_stats(&root, &opts, false),
     }
+}
+
+fn cmd_completions(shell: clap_complete::Shell) -> Result<i32> {
+    let mut cmd = <Cli as clap::CommandFactory>::command();
+    clap_complete::generate(shell, &mut cmd, "llmignore", &mut std::io::stdout());
+    Ok(0)
+}
+
+fn cmd_man() -> Result<i32> {
+    let cmd = <Cli as clap::CommandFactory>::command();
+    clap_mangen::Man::new(cmd).render(&mut std::io::stdout())?;
+    Ok(0)
 }
 
 fn cmd_init(root: &Path, force: bool) -> Result<i32> {

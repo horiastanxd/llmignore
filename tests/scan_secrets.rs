@@ -41,6 +41,27 @@ fn does_not_flag_secrets_already_covered_by_defaults() {
 }
 
 #[test]
+fn flags_terraform_state_and_git_credentials() {
+    let dir = tempdir().unwrap();
+    let root = dir.path();
+    fs::write(root.join(".llmignore"), "*.log\n").unwrap();
+    fs::write(root.join("terraform.tfstate"), "{}").unwrap();
+    fs::write(root.join(".git-credentials"), "https://x:y@h").unwrap();
+
+    let findings = find_exposed_secrets(root).unwrap();
+    let paths: Vec<_> = findings.iter().map(|f| f.path.clone()).collect();
+
+    assert!(
+        paths.contains(&Path::new("terraform.tfstate").to_path_buf()),
+        "tfstate should be flagged: {paths:?}"
+    );
+    assert!(
+        paths.contains(&Path::new(".git-credentials").to_path_buf()),
+        ".git-credentials should be flagged: {paths:?}"
+    );
+}
+
+#[test]
 fn finding_includes_a_reason() {
     let dir = tempdir().unwrap();
     let root = dir.path();

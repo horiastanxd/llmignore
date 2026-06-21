@@ -40,6 +40,22 @@ pub const TARGETS: &[Target] = &[
         filename: ".aiderignore",
         tool: "Aider",
     },
+    Target {
+        filename: ".continueignore",
+        tool: "Continue",
+    },
+    Target {
+        filename: ".clineignore",
+        tool: "Cline",
+    },
+    Target {
+        filename: ".rooignore",
+        tool: "Roo Code",
+    },
+    Target {
+        filename: ".aiignore",
+        tool: "JetBrains AI Assistant",
+    },
 ];
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

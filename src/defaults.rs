@@ -36,6 +36,18 @@ credentials.*
 .gnupg/
 service-account*.json
 gha-creds-*.json
+auth.json
+.git-credentials
+.pgpass
+.dockercfg
+kubeconfig
+*.kubeconfig
+*.jks
+*.p8
+*.ovpn
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
 
 # ── Dependencies & vendored code ──
 node_modules/
@@ -211,4 +223,28 @@ pub const SENSITIVE_PATTERNS: &[(&str, &str)] = &[
     ("*.secret", "Secret file"),
     ("service-account*.json", "GCP service account key"),
     ("*.keystore", "Java keystore"),
+    ("*.jks", "Java keystore"),
+    ("*.p8", "Apple / PKCS#8 private key"),
+    ("auth.json", "Auth file - may contain tokens"),
+    (
+        ".git-credentials",
+        "Git credential store (plaintext URLs with passwords)",
+    ),
+    (".pgpass", "PostgreSQL password file"),
+    (".dockercfg", "Docker registry credentials"),
+    ("kubeconfig", "Kubernetes config - cluster credentials"),
+    ("*.kubeconfig", "Kubernetes config - cluster credentials"),
+    ("*.ovpn", "OpenVPN profile - may embed keys"),
+    (
+        "terraform.tfstate",
+        "Terraform state - often holds plaintext secrets",
+    ),
+    (
+        "terraform.tfstate.backup",
+        "Terraform state backup - often holds plaintext secrets",
+    ),
+    (
+        "*.tfvars",
+        "Terraform variables - frequently hold credentials",
+    ),
 ];

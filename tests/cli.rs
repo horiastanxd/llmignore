@@ -131,6 +131,31 @@ fn scan_clean_repo_exits_zero() {
 }
 
 #[test]
+fn completions_bash_outputs_script() {
+    let dir = tempdir().unwrap();
+    let out = cmd(dir.path())
+        .args(["completions", "bash"])
+        .assert()
+        .success();
+    let stdout = String::from_utf8(out.get_output().stdout.clone()).unwrap();
+    assert!(
+        stdout.contains("llmignore"),
+        "completion script should mention the command"
+    );
+}
+
+#[test]
+fn man_outputs_roff() {
+    let dir = tempdir().unwrap();
+    let out = cmd(dir.path()).arg("man").assert().success();
+    let stdout = String::from_utf8(out.get_output().stdout.clone()).unwrap();
+    assert!(
+        stdout.contains(".TH"),
+        "man output should be roff (.TH header)"
+    );
+}
+
+#[test]
 fn sync_generates_tool_files() {
     let dir = tempdir().unwrap();
     let root = dir.path();
