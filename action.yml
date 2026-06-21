@@ -14,7 +14,7 @@ inputs:
   version:
     description: "llmignore release to use (binary release tag)."
     required: false
-    default: "v0.1.0"
+    default: "v0.1.1"
   working-directory:
     description: "Directory to run llmignore in."
     required: false
