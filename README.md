@@ -12,6 +12,10 @@ Secrets, dependencies, build output and binaries should never reach your AI assi
 [![npm](https://img.shields.io/npm/v/llmignore-cli.svg)](https://www.npmjs.com/package/llmignore-cli)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+<br>
+
+<img src="docs/demo.svg" alt="llmignore scanning a repo for exposed secrets and showing token stats" width="720">
+
 </div>
 
 ---
@@ -138,9 +142,31 @@ update cleanly and never clobber a file you wrote by hand (use `--force` to over
 
 ### Guard your repo in CI
 
+As a GitHub Action - fails the build if a secret is reachable by AI tools:
+
 ```yaml
 # .github/workflows/llmignore.yml
-- run: npx llmignore-cli scan   # fails the build if a secret is exposed to AI tools
+name: llmignore
+on: [push, pull_request]
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: horiastanxd/llmignore@v0.1
+```
+
+Or in any pipeline: `npx llmignore-cli scan`.
+
+### As a pre-commit hook
+
+```yaml
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/horiastanxd/llmignore
+    rev: v0.1.0
+    hooks:
+      - id: llmignore-scan
 ```
 
 ### Feed only safe files to any AI CLI

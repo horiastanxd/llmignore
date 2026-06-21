@@ -1,0 +1,39 @@
+name: "llmignore - AI secret scanner"
+description: "Fail CI if secret files (.env, keys, ...) are reachable by AI coding tools. Uses .llmignore."
+author: "horiastanxd"
+
+branding:
+  icon: "eye-off"
+  color: "purple"
+
+inputs:
+  args:
+    description: "Arguments passed to llmignore (default: scan)."
+    required: false
+    default: "scan"
+  version:
+    description: "llmignore release to use (binary release tag)."
+    required: false
+    default: "v0.1.0"
+  working-directory:
+    description: "Directory to run llmignore in."
+    required: false
+    default: "."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install llmignore
+      shell: bash
+      env:
+        LLM_VERSION: ${{ inputs.version }}
+      run: |
+        curl -fsSL "https://raw.githubusercontent.com/horiastanxd/llmignore/${LLM_VERSION}/install.sh" \
+          | LLMIGNORE_VERSION="${LLM_VERSION}" LLMIGNORE_BIN_DIR="${HOME}/.local/bin" sh
+        echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
+    - name: Run llmignore
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        LLM_ARGS: ${{ inputs.args }}
+      run: llmignore ${LLM_ARGS}

@@ -1,0 +1,6 @@
+- id: llmignore-scan
+  name: llmignore (no secrets exposed to AI)
+  description: Fail the commit if secret files are reachable by AI coding tools.
+  entry: llmignore scan
+  language: rust
+  pass_filenames: false

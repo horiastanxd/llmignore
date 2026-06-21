@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15">
+  <rect width="760" height="430" rx="10" fill="#0d1117"/>
+  <rect width="760" height="36" rx="10" fill="#161b22"/>
+  <rect y="26" width="760" height="10" fill="#161b22"/>
+  <circle cx="22" cy="18" r="6" fill="#ff5f56"/>
+  <circle cx="42" cy="18" r="6" fill="#ffbd2e"/>
+  <circle cx="62" cy="18" r="6" fill="#27c93f"/>
+  <text x="380" y="23" fill="#8b949e" text-anchor="middle" font-size="13">llmignore</text>
+
+  <g>
+    <text x="24" y="72"><tspan fill="#8b949e">$</tspan> <tspan fill="#e6edf3">llmignore scan</tspan></text>
+
+    <text x="24" y="104"><tspan fill="#f85149">&#9888; 2 exposed secrets reachable by AI tools:</tspan></text>
+    <text x="48" y="132"><tspan fill="#f85149">.env</tspan>     <tspan fill="#8b949e">Environment file - commonly holds API keys and DB passwords</tspan></text>
+    <text x="48" y="156"><tspan fill="#f85149">id_rsa</tspan>   <tspan fill="#8b949e">SSH private key</tspan></text>
+    <text x="24" y="188"><tspan fill="#e6edf3">Add them to .llmignore (or run </tspan><tspan fill="#58a6ff">llmignore init</tspan><tspan fill="#e6edf3">).</tspan></text>
+
+    <text x="24" y="244"><tspan fill="#8b949e">$</tspan> <tspan fill="#e6edf3">llmignore</tspan></text>
+    <text x="48" y="288"><tspan fill="#8b949e">Included</tspan>   <tspan fill="#e6edf3">206 files</tspan>   <tspan fill="#58a6ff">~753.7k tokens</tspan></text>
+    <text x="48" y="316"><tspan fill="#8b949e">Ignored</tspan>  <tspan fill="#e6edf3">6,386 files</tspan></text>
+    <text x="48" y="344"><tspan fill="#8b949e">Rules</tspan>    <tspan fill="#8b949e">built-in defaults + .gitignore</tspan></text>
+    <text x="48" y="384"><tspan fill="#f0883e">&#9888; 1 exposed secret</tspan> <tspan fill="#8b949e">(run llmignore scan)</tspan></text>
+  </g>
+</svg>
