@@ -8,8 +8,19 @@ permissions:
   contents: write
 
 jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create release if missing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "$TAG" --title "$TAG" --notes "See CHANGELOG.md" --verify-tag || true
+
   binaries:
     name: Build ${{ matrix.target }}
+    needs: create-release
     strategy:
       fail-fast: false
       matrix:
