@@ -1,0 +1,13 @@
+# Rust
+/target
+
+# npm wrapper
+npm/node_modules/
+npm/llmignore
+npm/llmignore.exe
+npm/*.tar.gz
+npm/*.zip
+
+# OS / editor
+.DS_Store
+*.swp

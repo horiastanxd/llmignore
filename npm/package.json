@@ -1,0 +1,49 @@
+{
+  "name": "llmignore-cli",
+  "version": "0.1.0",
+  "description": "Like .gitignore, but tells AI tools what NOT to read. Fast native scanner for .llmignore files.",
+  "keywords": [
+    "ai",
+    "llm",
+    "gitignore",
+    "llmignore",
+    "cursor",
+    "claude",
+    "copilot",
+    "cli",
+    "secrets",
+    "context"
+  ],
+  "homepage": "https://github.com/horiastanxd/llmignore#readme",
+  "bugs": {
+    "url": "https://github.com/horiastanxd/llmignore/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/horiastanxd/llmignore.git"
+  },
+  "license": "MIT",
+  "author": "horiastanxd",
+  "bin": {
+    "llmignore": "bin/cli.js"
+  },
+  "scripts": {
+    "postinstall": "node bin/install.js"
+  },
+  "files": [
+    "bin/cli.js",
+    "bin/install.js"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
+}
